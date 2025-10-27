@@ -3,7 +3,13 @@
 
 #include "MyInteractionComponent.h"
 #include "Engine/World.h"
+#include "Engine/EngineTypes.h"
+#include "Engine/OverlapResult.h"
+#include "WorldCollision.h"
+#include "CollisionQueryParams.h"
 #include "DrawDebugHelpers.h"
+#include "GameFramework/Actor.h"
+#include "UE5_cpp/objects/MyItem.h"
 
 // Sets default values for this component's properties
 UMyInteractionComponent::UMyInteractionComponent()
@@ -58,22 +64,58 @@ void UMyInteractionComponent::PickUp(AActor* Item)
 
 void UMyInteractionComponent::TryInteract()
 {
-	FHitResult Hit;
-	const FVector Start = GetComponentLocation();
-	const FVector End = Start + GetForwardVector() * TraceDistance;
+	// FHitResult Hit;
+	const FVector Center = GetComponentLocation();
+	// const FVector End = Center + GetForwardVector() * TraceDistance;
+	FCollisionQueryParams Params(SCENE_QUERY_STAT(InteractOverlap), false, GetOwner());
 
-	FCollisionQueryParams Params(SCENE_QUERY_STAT(InteractTrace), false, GetOwner());
-	const bool bHit = GetWorld()->LineTraceSingleByChannel(Hit, Start, End, TraceChannel, Params);
+	FCollisionObjectQueryParams ObjParams;
+	ObjParams.AddObjectTypesToQuery(ECC_GameTraceChannel1);
+	// ObjParams.AddObjectTypesToQuery(ECC_WorldDynamic);
+	// ObjParams.AddObjectTypesToQuery(ECC_PhysicsBody);
+
+	TArray<FOverlapResult> Overlaps;
+	const bool bAny = GetWorld()->OverlapMultiByObjectType(Overlaps, Center, FQuat::Identity, ObjParams, FCollisionShape::MakeSphere(SphereRadius), Params);
 
 #if !(UE_BUILD_SHIPPING)
-	DrawDebugLine(GetWorld(), Start, End, bHit ? FColor::Green : FColor::Red, false, 1.0f, 0, 1.5f);
-	if (bHit) DrawDebugPoint(GetWorld(), Hit.ImpactPoint, 8.f, FColor::Green, false, 1.0f);
+	// DrawDebugLine(GetWorld(), Center, End, FColor::Cyan, false, 1.0f, 0, 1.0f);
+	DrawDebugSphere(GetWorld(), Center, SphereRadius, 16, bAny ? FColor::Green : FColor::Red, false, 0.5f);
 #endif
 
-	if (!bHit || !Hit.GetActor())
+	if (!bAny)
 	{
-		UE_LOG(LogTemp, Verbose, TEXT("TryInteract: nothing hit"));
+		UE_LOG(LogTemp, Verbose, TEXT("TryInteract: no Item hit in sphere"));
 		return;
 	}
-	PickUp(Hit.GetActor());
+	
+	AActor* Best = nullptr;
+	float BestScore = -FLT_MAX;
+	const FVector Fwd = GetForwardVector().GetSafeNormal();
+
+	for (const FOverlapResult& O : Overlaps) 
+	{
+		AActor* A = O.GetActor();
+		if (!A) continue;
+		if (A == GetOwner()) continue;
+		if (!A->IsA<AMyItem>()) continue;
+
+		const FVector To = (A->GetActorLocation() - Center);
+		const float Dist = To.Size();
+		const float Align = FVector::DotProduct(Fwd, To.GetSafeNormal());
+		const float Score = Align * 1000.f - Dist;
+		
+		if (Score > BestScore)
+		{
+			BestScore = Score;
+			Best = A;	
+		}
+	}
+	
+	if (!Best)
+	{
+		UE_LOG(LogTemp, Verbose, TEXT("TryInteract: overlaps found, but no valid Item"));
+		return;
+	}
+
+	PickUp(Best);
 }

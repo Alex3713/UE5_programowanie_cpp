@@ -12,26 +12,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eaa38d13-9db5-410a-bae7-6845ebcb96ef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/Grab_From_Floor_Skeleton_Animation.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/MixamoAnimations/Beta_HighLimbsGeoSG3.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/MixamoAnimations/Beta_Joints_MAT1.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/MixamoAnimations/Grab_From_Floor.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/MixamoAnimations/Grab_From_Floor_Anim.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/MixamoAnimations/Grab_From_Floor_Anim/Driving_Grab_From_Floor_Anim.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/MixamoAnimations/Grab_From_Floor_PhysicsAsset.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/MixamoAnimations/Grab_From_Floor_Skeleton.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/MixamoAnimations/Grab_From_Floor_Skeleton_Sequence.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/2/K3/V8SLYMGLW3B1YSYY6LTP4V.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/assets/Sword.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/UE5_cpp/components/MyInteractionComponent.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/UE5_cpp/components/MyInteractionComponent.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UE5_cpp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UE5_cpp/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/MyPlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/MyPlayerCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/RogueCharacter/Animations/ABP_RogueCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/RogueCharacter/Animations/ABP_RogueCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/MyPlayerController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/MyPlayerController.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/MyPlayerController.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/MyPlayerController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Input/IA_Interact.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Input/IA_Interact.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/2/K3/V8SLYMGLW3B1YSYY6LTP4V.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/2/K3/V8SLYMGLW3B1YSYY6LTP4V.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/assets/Sword.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/assets/Sword.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/components/MyInteractionComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/components/MyInteractionComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/components/MyInteractionComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/components/MyInteractionComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +44,10 @@
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/components/MyInteractionComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.h" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="Toolset" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -184,12 +178,14 @@
       <workItem from="1760292464333" duration="985000" />
       <workItem from="1761324946274" duration="3595000" />
       <workItem from="1761500588196" duration="11789000" />
+      <workItem from="1761573887943" duration="13390000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

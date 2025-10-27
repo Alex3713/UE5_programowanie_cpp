@@ -31,7 +31,9 @@ public:
 
 protected:
 	UPROPERTY(EditAnywhere, Category = "Interaction")
-	float TraceDistance = 120.f;
+	float TraceDistance = 150.f;
+	UPROPERTY(EditAnywhere, Category = "Interaction")
+	float SphereRadius = 150.f;
 	UPROPERTY(EditAnywhere, Category = "Interaction")
 	TEnumAsByte<ECollisionChannel> TraceChannel = ECC_Visibility;
 };
