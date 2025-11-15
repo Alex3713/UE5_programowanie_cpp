@@ -2,4 +2,130 @@
 
 
 #include "MyBasePlayerCharacter.h"
+#include "UE5_cpp/components/MyInteractionComponent.h"
+#include "Animation/AnimInstance.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/PlayerController.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "Components/StaticMeshComponent.h"
 
+AMyBasePlayerCharacter::AMyBasePlayerCharacter()
+{
+	PrimaryActorTick.bCanEverTick = true;
+}
+
+void AMyBasePlayerCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+	InteractionComp = FindComponentByClass<UMyInteractionComponent>();
+}
+
+void AMyBasePlayerCharacter::StartPickup(AActor* TargetItem)
+{
+	if (bIsInteracting || !TargetItem) return;
+
+	bIsInteracting = true;
+	PendingItem = TargetItem;
+
+	if (UCharacterMovementComponent* Move = GetCharacterMovement())
+	{
+		Move -> DisableMovement();
+	}
+	if (APlayerController* PC = Cast<APlayerController>(GetController()))
+	{
+		PC->SetIgnoreMoveInput(true);
+	}
+
+	UAnimInstance* Anim = GetMesh() ? GetMesh()->GetAnimInstance() : nullptr;
+	if (PickupMontage && Anim)
+	{
+		Anim->OnPlayMontageNotifyBegin.AddDynamic(this, &AMyBasePlayerCharacter::OnMontageNotifyBegin);
+
+		Anim->Montage_Play(PickupMontage);
+		FOnMontageEnded EndDelegate;
+		EndDelegate.BindUObject(this, &AMyBasePlayerCharacter::OnPickupMontageEnded);
+		Anim->Montage_SetEndDelegate(EndDelegate, PickupMontage);
+	}
+	else
+	{
+		DoPickup();
+		RestoreControl();
+		bIsInteracting = false;
+	}
+}
+
+void AMyBasePlayerCharacter::OnPickupMontageEnded(UAnimMontage* Montage, bool bInterrupted)
+{
+	DoPickup();
+	RestoreControl();
+	bIsInteracting = false;
+
+	if (UAnimInstance* Anim = GetMesh() ? GetMesh()->GetAnimInstance() : nullptr)
+	{
+		Anim->OnPlayMontageNotifyBegin.RemoveAll(this);
+	}
+}
+
+void AMyBasePlayerCharacter::OnMontageNotifyBegin(FName NotifyName, const FBranchingPointNotifyPayload& /*Payload*/)
+{
+	if (NotifyName == TEXT("PickupAttach"))
+	{
+		DoPickup();
+	}
+}
+
+void AMyBasePlayerCharacter::DoPickup()
+{
+	if (!InteractionComp || !PendingItem) return;
+	InteractionComp->PickUp(PendingItem);
+	PendingItem = nullptr;
+}
+
+void AMyBasePlayerCharacter::RestoreControl()
+{
+	if (UCharacterMovementComponent* Move = GetCharacterMovement())
+	{
+		Move->SetMovementMode(MOVE_Walking);
+	}
+	if (APlayerController* PC = Cast<APlayerController>(GetController()))
+	{
+		PC->SetIgnoreMoveInput(false);
+	}
+}
+
+void AMyBasePlayerCharacter::EquipWeapon(AMyItem* Weapon)
+{
+	if (!Weapon || !CanEquipWeapon()) return;
+
+	if (UPrimitiveComponent* Prim = Cast<UPrimitiveComponent>(Weapon->GetRootComponent()))
+	{
+		Prim->SetSimulatePhysics(false);
+		Weapon->SetActorEnableCollision(false);
+	}
+
+	static const FName WeaponSocket(TEXT("RightHandSocket"));
+	if (USkeletalMeshComponent* Body = GetMesh())
+	{
+		Weapon->AttachToComponent(Body, FAttachmentTransformRules::SnapToTargetNotIncludingScale, WeaponSocket);
+	}
+	Weapon->SetOwner(this);
+	Weapon->SetEquipped(true);
+	EquippedWeapon = Weapon;
+
+	UE_LOG(LogTemp, Log, TEXT("Equipped weapon: %s"), *GetNameSafe(Weapon));
+}
+
+void AMyBasePlayerCharacter::UnequipWeapon()
+{
+	if (!EquippedWeapon) return;
+
+	EquippedWeapon->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+	if (UPrimitiveComponent* Prim = Cast<UPrimitiveComponent>(EquippedWeapon->GetRootComponent()))
+	{
+		EquippedWeapon->SetEquipped(false);
+		Prim->SetSimulatePhysics(true);
+		EquippedWeapon->SetActorEnableCollision(true);
+	}
+
+	UE_LOG(LogTemp, Log, TEXT("Unequipped weapon: %s"), *GetNameSafe(EquippedWeapon));
+}

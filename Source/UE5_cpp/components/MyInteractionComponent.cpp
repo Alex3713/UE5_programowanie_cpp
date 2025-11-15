@@ -2,6 +2,7 @@
 
 
 #include "MyInteractionComponent.h"
+#include "UE5_cpp/characters/MyBasePlayerCharacter.h"
 #include "Engine/World.h"
 #include "Engine/EngineTypes.h"
 #include "Engine/OverlapResult.h"
@@ -10,6 +11,7 @@
 #include "DrawDebugHelpers.h"
 #include "GameFramework/Actor.h"
 #include "UE5_cpp/objects/MyItem.h"
+#include "Components/SceneComponent.h"
 
 // Sets default values for this component's properties
 UMyInteractionComponent::UMyInteractionComponent()
@@ -55,9 +57,52 @@ void UMyInteractionComponent::PickUp(AActor* Item)
 		return;
 	}
 
+	if (AMyItem* MyItem = Cast<AMyItem>(Item))
+	{
+		if (MyItem->bIsEquipped)
+		{
+			return;
+		}
+		if (MyItem->ItemType == EItemType::Weapon)
+		{
+			if (AMyBasePlayerCharacter* Char = Cast<AMyBasePlayerCharacter>(Owner))
+			{
+				if (Char->CanEquipWeapon())
+				{
+					Char->EquipWeapon(MyItem);
+					return;
+				}
+			}
+		}
+	}
+	if (UPrimitiveComponent* Prim = Cast<UPrimitiveComponent>(Item->GetRootComponent()))
+	{
+		Prim->SetSimulatePhysics(false);
+		Prim->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		Prim->SetCollisionResponseToAllChannels(ECR_Ignore);
+		Prim->SetMobility(EComponentMobility::Movable); // just in case...
+	}
 	Item->SetActorEnableCollision(false);
 
-	Item->AttachToComponent(this, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+	if (ACharacter* Char = Cast<ACharacter>(Owner))
+	{
+		if (USkeletalMeshComponent* Body = Char->GetMesh())
+		{
+			static const FName CarrySocket(TEXT("CarrySocket"));
+			Item->AttachToComponent(Body, FAttachmentTransformRules::SnapToTargetNotIncludingScale, CarrySocket);
+		}
+		else
+		{
+			Item->AttachToComponent(this, FAttachmentTransformRules::KeepWorldTransform);
+		}
+	}
+	else
+	{
+		Item->AttachToComponent(this, FAttachmentTransformRules::KeepWorldTransform);
+	}
+	Item->SetActorHiddenInGame(true);
+	Item->SetActorTickEnabled(false);
+	// Item->AttachToComponent(this, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 
 	UE_LOG(LogTemp, Log, TEXT("%s picked up %s"), *Owner->GetName(), *Item->GetName());
 }
@@ -97,6 +142,11 @@ void UMyInteractionComponent::TryInteract()
 		AActor* A = O.GetActor();
 		if (!A) continue;
 		if (A == GetOwner()) continue;
+		if (A->GetAttachParentActor() == GetOwner()) continue;
+		if (AMyItem* Item = Cast<AMyItem>(A))
+		{
+			if (Item->bIsEquipped) continue;
+		}
 		if (!A->IsA<AMyItem>()) continue;
 
 		const FVector To = (A->GetActorLocation() - Center);
@@ -117,5 +167,15 @@ void UMyInteractionComponent::TryInteract()
 		return;
 	}
 
-	PickUp(Best);
+	if (Best)
+	{
+		if (AMyBasePlayerCharacter* Char = Cast<AMyBasePlayerCharacter>(GetOwner()))
+		{
+			Char->StartPickup(Best);
+		}
+		else
+		{
+			PickUp(Best);
+		}
+	}
 }

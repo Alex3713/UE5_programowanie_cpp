@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "MyBaseCharacter.h"
+#include "UE5_cpp/components/MyInteractionComponent.h"
+#include "UE5_cpp/objects/MyItem.h"
 #include "MyBasePlayerCharacter.generated.h"
 
 /**
@@ -14,4 +16,46 @@ class UE5_CPP_API AMyBasePlayerCharacter : public AMyBaseCharacter
 {
 	GENERATED_BODY()
 	
+public:
+	AMyBasePlayerCharacter();
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Anim")
+	UAnimMontage* PickupMontage = nullptr;
+
+	UFUNCTION(BlueprintCallable, Category="Interaction")
+	void StartPickup(AActor* TargetItem);
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Equipment")
+	AMyItem* EquippedWeapon = nullptr;
+
+	UFUNCTION(BlueprintCallable, Category="Equipment")
+	bool CanEquipWeapon() const { return EquippedWeapon == nullptr; }
+
+	UFUNCTION(BlueprintCallable, Category="Equipment")
+	void EquipWeapon(AMyItem* Weapon);
+
+	UFUNCTION(BlueprintCallable, Category="Equipment")
+	void UnequipWeapon();
+
+protected:
+	virtual void BeginPlay() override;
+	
+	UFUNCTION()
+	void OnPickupMontageEnded(UAnimMontage* Montage, bool bInterrupted);
+
+	UFUNCTION()
+	void OnMontageNotifyBegin(FName NotifyName, const FBranchingPointNotifyPayload& Payload);
+
+	void RestoreControl();
+
+	void DoPickup();
+
+private:
+	UPROPERTY()
+	UMyInteractionComponent* InteractionComp = nullptr;
+
+	UPROPERTY()
+	AActor* PendingItem = nullptr;
+
+	bool bIsInteracting = false;
 };

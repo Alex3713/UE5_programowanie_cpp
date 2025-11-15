@@ -2,6 +2,7 @@
 
 
 #include "MyItem.h"
+#include "Components/PrimitiveComponent.h"
 
 // Sets default values
 AMyItem::AMyItem()
@@ -39,3 +40,25 @@ void AMyItem::Tick(float DeltaTime)
 
 }
 
+void AMyItem::SetEquipped(bool bNewEquipped)
+{
+	bIsEquipped = bNewEquipped;
+	if (UPrimitiveComponent* Prim = Cast<UPrimitiveComponent>(GetRootComponent()))
+	{
+		if (bIsEquipped)
+		{
+			Prim->SetSimulatePhysics(false);
+			Prim->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		}
+		else
+		{
+			Prim->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+			Prim->SetCollisionResponseToAllChannels(ECR_Ignore);
+			Prim->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
+			Prim->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Block);
+			Prim->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Block);
+			Prim->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+			Prim->SetCollisionObjectType(ECC_GameTraceChannel1);
+		}
+	}
+}

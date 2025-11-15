@@ -12,14 +12,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eaa38d13-9db5-410a-bae7-6845ebcb96ef" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/Grab_From_Floor_Skeleton_Animation_Montage.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/items/Barrel.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/items/SoupBowl.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/items/Sword.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/3/0O/2ASCFI9E6369CLZ7NOAI2D.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/3/XR/K0E4Z2NB6CHW9J96QA140Y.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UE5_cpp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UE5_cpp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/MyPlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/MyPlayerCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Input/IA_Interact.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Input/IA_Interact.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/2/K3/V8SLYMGLW3B1YSYY6LTP4V.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/2/K3/V8SLYMGLW3B1YSYY6LTP4V.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/RogueCharacter/Animations/ABP_RogueCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/RogueCharacter/Animations/ABP_RogueCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/RogueCharacter/Meshes/SK_Rogue_Main.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/RogueCharacter/Meshes/SK_Rogue_Main.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/assets/Sword.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/assets/Sword.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBasePlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBasePlayerCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBasePlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBasePlayerCharacter.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/components/MyInteractionComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/components/MyInteractionComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/components/MyInteractionComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/components/MyInteractionComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.h" afterDir="false" />
     </list>
@@ -47,7 +53,7 @@
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="Toolset" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -112,10 +118,10 @@
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
       <option name="PTY_MODE" value="Auto" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
       <option name="AUTO_ATTACH_CHILDREN" value="0" />
-      <option name="MIXED_MODE_DEBUG" value="0" />
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/../../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/AutomationTool/AutomationTool.csproj" />
       <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
@@ -135,10 +141,10 @@
       <option name="ENV_FILE_PATHS" value="" />
       <option name="REDIRECT_INPUT_PATH" value="" />
       <option name="PTY_MODE" value="Auto" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
       <option name="USE_MONO" value="0" />
       <option name="RUNTIME_ARGUMENTS" value="" />
       <option name="AUTO_ATTACH_CHILDREN" value="0" />
-      <option name="MIXED_MODE_DEBUG" value="0" />
       <option name="PROJECT_PATH" value="$PROJECT_DIR$/../../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Programs/UnrealBuildTool/UnrealBuildTool.csproj" />
       <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
@@ -179,6 +185,8 @@
       <workItem from="1761324946274" duration="3595000" />
       <workItem from="1761500588196" duration="11789000" />
       <workItem from="1761573887943" duration="13390000" />
+      <workItem from="1763166430932" duration="3187000" />
+      <workItem from="1763169966781" duration="7842000" />
     </task>
     <servers />
   </component>

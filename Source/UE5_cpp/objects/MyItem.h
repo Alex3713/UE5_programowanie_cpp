@@ -25,6 +25,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item")
 	TEnumAsByte<EItemType> ItemType = Other;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite) FName ItemId;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item")
+	bool bIsEquipped = false;
+	UFUNCTION(BlueprintCallable, Category = "Item")
+	void SetEquipped(bool bNewEquipped);
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
