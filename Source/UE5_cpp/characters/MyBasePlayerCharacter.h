@@ -36,6 +36,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Combat")
 	void TryAttack();
+
+	UFUNCTION(BlueprintCallable, Category = "Combat")
+	void SetWeaponHitboxActive(bool bActive);
 	
 	UFUNCTION(BlueprintCallable, Category="Interaction")
 	void StartPickup(AActor* TargetItem);

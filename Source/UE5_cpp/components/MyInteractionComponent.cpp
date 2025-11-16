@@ -82,7 +82,6 @@ void UMyInteractionComponent::PickUp(AActor* Item)
 		Prim->SetCollisionResponseToAllChannels(ECR_Ignore);
 		Prim->SetMobility(EComponentMobility::Movable); // just in case...
 	}
-	Item->SetActorEnableCollision(false);
 
 	if (ACharacter* Char = Cast<ACharacter>(Owner))
 	{

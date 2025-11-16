@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/BoxComponent.h"
 #include "GameFramework/Actor.h"
 #include "MyItem.generated.h"
 
@@ -27,12 +28,22 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite) FName ItemId;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item")
 	bool bIsEquipped = false;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item|Combat")
+	UBoxComponent* HitBox = nullptr;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item|Combat")
+	bool bHitboxActive = false;
+	UFUNCTION(BlueprintCallable, Category = "Item|Combat")
+	void SetHitboxActive(bool bActive);
+	
 	UFUNCTION(BlueprintCallable, Category = "Item")
 	void SetEquipped(bool bNewEquipped);
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UFUNCTION()
+	void OnHitBoxOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult & SweepResult);
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

@@ -3,6 +3,7 @@
 
 #include "MyBasePlayerCharacter.h"
 #include "UE5_cpp/components/MyInteractionComponent.h"
+#include "UE5_cpp/objects/MyItem.h"
 #include "Animation/AnimInstance.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/PlayerController.h"
@@ -100,7 +101,7 @@ void AMyBasePlayerCharacter::EquipWeapon(AMyItem* Weapon)
 	if (UPrimitiveComponent* Prim = Cast<UPrimitiveComponent>(Weapon->GetRootComponent()))
 	{
 		Prim->SetSimulatePhysics(false);
-		Weapon->SetActorEnableCollision(false);
+		//Weapon->SetActorEnableCollision(false);
 	}
 
 	static const FName WeaponSocket(TEXT("RightHandSocket"));
@@ -195,4 +196,10 @@ void AMyBasePlayerCharacter::OnAttackMontageEnded(UAnimMontage* Montage, bool bI
 {
 	SetInputDisabled(false);
 	bIsAttacking = false;
+}
+
+void AMyBasePlayerCharacter::SetWeaponHitboxActive(bool bActive)
+{
+	if (!EquippedWeapon) return;
+	EquippedWeapon->SetHitboxActive(bActive);
 }
