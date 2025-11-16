@@ -129,3 +129,70 @@ void AMyBasePlayerCharacter::UnequipWeapon()
 
 	UE_LOG(LogTemp, Log, TEXT("Unequipped weapon: %s"), *GetNameSafe(EquippedWeapon));
 }
+
+void AMyBasePlayerCharacter::SetInputDisabled(bool bDisable)
+{
+	bInputDisabled = bDisable;
+
+	if (APlayerController* PC = Cast<APlayerController>(GetController()))
+	{
+		PC->SetIgnoreMoveInput(bDisable);
+	}
+	if (bDisable)
+	{
+		if (auto* Move = GetCharacterMovement()) Move->StopMovementImmediately();
+	}
+}
+
+void AMyBasePlayerCharacter::TryAttack()
+{
+	if (bInputDisabled) return;
+	if (!EquippedWeapon) return;
+	if (bAttackLockedByMontage && bIsAttacking) return;
+	if (AttackMontages.Num() == 0) return;
+
+	UAnimInstance* Anim = GetMesh() ? GetMesh()->GetAnimInstance() : nullptr;
+	if (!Anim) return;
+
+	int32 Index = 0;
+	if (AttackMontages.Num() == 1)
+	{
+		Index = 0;
+	}
+	else
+	{
+		do
+		{
+			Index = FMath::RandRange(0, AttackMontages.Num() - 1);
+		}while (Index == LastAttackIndex);
+	}
+	UAnimMontage* Chosen = AttackMontages[Index];
+	if (!Chosen)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("TryAttack: null montage at index %d"), Index);
+		return;
+	}
+
+	SetInputDisabled(true);
+	
+	float PlayRes = Anim->Montage_Play(Chosen, 1.f);
+	if (PlayRes <= 0.f)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("TryAttack: Montage_Play failed."));
+		SetInputDisabled(false);
+		return;
+	}
+
+	FOnMontageEnded EndDelegate;
+	EndDelegate.BindUObject(this, &AMyBasePlayerCharacter::OnAttackMontageEnded);
+	Anim->Montage_SetEndDelegate(EndDelegate, Chosen);
+
+	bIsAttacking = true;
+	LastAttackIndex = Index;
+}
+
+void AMyBasePlayerCharacter::OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted)
+{
+	SetInputDisabled(false);
+	bIsAttacking = false;
+}

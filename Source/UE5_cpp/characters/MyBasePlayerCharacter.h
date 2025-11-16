@@ -22,6 +22,21 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Anim")
 	UAnimMontage* PickupMontage = nullptr;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Anim")
+	TArray<UAnimMontage*> AttackMontages;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat")
+	bool bAttackLockedByMontage = true;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat")
+	bool bInputDisabled = false;
+
+	UFUNCTION(BlueprintCallable, Category = "Combat")
+	void SetInputDisabled(bool bDisable);
+
+	UFUNCTION(BlueprintCallable, Category = "Combat")
+	void TryAttack();
+	
 	UFUNCTION(BlueprintCallable, Category="Interaction")
 	void StartPickup(AActor* TargetItem);
 
@@ -44,6 +59,9 @@ protected:
 	void OnPickupMontageEnded(UAnimMontage* Montage, bool bInterrupted);
 
 	UFUNCTION()
+	void OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted);
+	
+	UFUNCTION()
 	void OnMontageNotifyBegin(FName NotifyName, const FBranchingPointNotifyPayload& Payload);
 
 	void RestoreControl();
@@ -58,4 +76,6 @@ private:
 	AActor* PendingItem = nullptr;
 
 	bool bIsInteracting = false;
+	bool bIsAttacking = false;
+	int32 LastAttackIndex = -1;
 };
