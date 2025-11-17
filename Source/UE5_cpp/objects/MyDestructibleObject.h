@@ -3,33 +3,30 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
-#include "UE5_cpp/interfaces/MyCombatInterface.h"
+#include "GameFramework/Actor.h"
 #include "UE5_cpp/components/MyAttributesComponent.h"
-#include "MyBaseCharacter.generated.h"
+#include "UE5_cpp/interfaces/MyCombatInterface.h"
+#include "MyDestructibleObject.generated.h"
 
 UCLASS()
-class UE5_CPP_API AMyBaseCharacter : public ACharacter, public IMyCombatInterface
+class UE5_CPP_API AMyDestructibleObject : public AActor, public IMyCombatInterface
 {
 	GENERATED_BODY()
-
-public:
-	// Sets default values for this character's properties
-	AMyBaseCharacter();
-
+	
+public:	
+	// Sets default values for this actor's properties
+	AMyDestructibleObject();
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	UStaticMeshComponent* Mesh;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
 	UMyAttributesComponent* Attributes;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual void GetHit_Implementation(FVector HitLocation, AActor* InstigatorActor, float DamageAmount) override;
 	virtual void OnDeath_Implementation() override;

@@ -28,6 +28,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite) FName ItemId;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item")
 	bool bIsEquipped = false;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Weapon")
+	float Damage = 1.f;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item|Combat")
 	UBoxComponent* HitBox = nullptr;

@@ -9,6 +9,7 @@ AMyBaseCharacter::AMyBaseCharacter()
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	Attributes = CreateDefaultSubobject<UMyAttributesComponent>(TEXT("Attributes"));
 }
 
 // Called when the game starts or when spawned
@@ -32,3 +33,17 @@ void AMyBaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 }
 
+void AMyBaseCharacter::GetHit_Implementation(FVector HitLocation, AActor* InstigatorActor, float DamageAmount)
+{
+	if (Attributes)
+	{
+		Attributes->ApplyDamage(DamageAmount);
+	}
+	UE_LOG(LogTemp, Warning, TEXT("Character got hit at %s by %s"), *HitLocation.ToString(), *GetNameSafe(InstigatorActor));
+	UE_LOG(LogTemp, Warning, TEXT("Damage dealt: %f"), DamageAmount);
+}
+
+void AMyBaseCharacter::OnDeath_Implementation()
+{
+	UE_LOG(LogTemp, Error, TEXT("%s: died (BaseCharacter OnDeath)"), *GetName());
+}

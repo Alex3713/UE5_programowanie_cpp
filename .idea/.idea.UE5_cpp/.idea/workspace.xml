@@ -12,44 +12,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eaa38d13-9db5-410a-bae7-6845ebcb96ef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/Dummy.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/PlayerAnimations/Grab_From_Floor_Skeleton_Animation.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/PlayerAnimations/Grab_From_Floor_Skeleton_Animation_Montage.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/PlayerAnimations/Sword_And_Shield_Attack_Anim.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/PlayerAnimations/Sword_And_Shield_Attack_Anim_Montage.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/PlayerAnimations/Sword_And_Shield_Slash_1_Anim.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/PlayerAnimations/Sword_And_Shield_Slash_1_Anim_Montage.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/PlayerAnimations/Sword_And_Shield_Slash_2_Anim.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/PlayerAnimations/Sword_And_Shield_Slash_2_Anim_Montage.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/PlayerAnimations/Sword_And_Shield_Slash_Anim.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/PlayerAnimations/Sword_And_Shield_Slash_Anim_Montage.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/A/5W/WNAGHNRTUZGN94YOILOJL8.uasset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/UE5_cpp/notifies/AnimNotifyState_WeaponHitWindow.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/UE5_cpp/notifies/AnimNotifyState_WeaponHitWindow.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/ABP_MyPlayerCharacter.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/characters/MyEnemyCharacter.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/objects/DestructibleCube.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/1/0Y/YRVKZ9VJ5LTSCZ4UG4S4MZ.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/3/JH/2OXFSRYTX8PUYRUVMH7KZD.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/7/RS/EQHFELUSAGAP1W3JV65YRI.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/B/EA/3S2OJ3SB053EXKD82JC2ZC.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/UE5_cpp/components/MyAttributesComponent.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/UE5_cpp/components/MyAttributesComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/UE5_cpp/interfaces/MyCombatInterface.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/UE5_cpp/interfaces/MyCombatInterface.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyDestructibleObject.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyDestructibleObject.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UE5_cpp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UE5_cpp/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/Grab_From_Floor_Skeleton_Animation.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/Grab_From_Floor_Skeleton_Animation.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/Grab_From_Floor_Skeleton_Animation_Montage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/Grab_From_Floor_Skeleton_Animation_Montage.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/MixamoAnimations/Grab_From_Floor_Anim/Driving_Grab_From_Floor_Anim.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/MixamoAnimations/Grab_From_Floor_Anim/Driving_Grab_From_Floor_Anim.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/MyPlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/MyPlayerCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/RogueCharacter/Animations/ABP_RogueCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/RogueCharacter/Animations/ABP_RogueCharacter.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/Sword_And_Shield_Attack_Anim.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/Sword_And_Shield_Attack_Anim.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/Sword_And_Shield_Attack_Anim_Montage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/Sword_And_Shield_Attack_Anim_Montage.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/Sword_And_Shield_Slash_1_Anim.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/Sword_And_Shield_Slash_1_Anim.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/Sword_And_Shield_Slash_1_Anim_Montage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/Sword_And_Shield_Slash_1_Anim_Montage.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/Sword_And_Shield_Slash_2_Anim.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/Sword_And_Shield_Slash_2_Anim.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/Sword_And_Shield_Slash_2_Anim_Montage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/Sword_And_Shield_Slash_2_Anim_Montage.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/Sword_And_Shield_Slash_Anim.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/Sword_And_Shield_Slash_Anim.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/Sword_And_Shield_Slash_Anim_Montage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/Sword_And_Shield_Slash_Anim_Montage.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/items/Barrel.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/items/Barrel.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/items/SoupBowl.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/items/SoupBowl.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/items/Sword.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/items/Sword.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Input/IMC_MyDefault.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Input/IMC_MyDefault.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/2/K3/V8SLYMGLW3B1YSYY6LTP4V.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/2/K3/V8SLYMGLW3B1YSYY6LTP4V.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/3/0O/2ASCFI9E6369CLZ7NOAI2D.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/3/0O/2ASCFI9E6369CLZ7NOAI2D.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/3/XR/K0E4Z2NB6CHW9J96QA140Y.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/3/XR/K0E4Z2NB6CHW9J96QA140Y.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBasePlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBasePlayerCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBasePlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBasePlayerCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/components/MyInteractionComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/components/MyInteractionComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/assets/Weapon_Pack/Mesh/Props/Interior/SM_Barrel.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/assets/Weapon_Pack/Mesh/Props/Interior/SM_Barrel.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBaseCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBaseCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBaseCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBaseCharacter.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.h" afterDir="false" />
     </list>
@@ -71,10 +60,16 @@
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/characters/MyBaseEnemyCharacter.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/characters/MyBasePlayerCharacter.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/characters/MyBasePlayerCharacter.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/components/MyAttributesComponent.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/components/MyAttributesComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/components/MyInteractionComponent.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/components/MyInteractionComponent.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/interfaces/MyCombatInterface.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/interfaces/MyCombatInterface.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/notifies/AnimNotifyState_WeaponHitWindow.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/notifies/AnimNotifyState_WeaponHitWindow.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/objects/MyDestructableObject.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/objects/MyDestructableObject.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.h" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -214,7 +209,9 @@
       <workItem from="1761573887943" duration="13390000" />
       <workItem from="1763166430932" duration="3187000" />
       <workItem from="1763169966781" duration="8817000" />
-      <workItem from="1763246479006" duration="17855000" />
+      <workItem from="1763246479006" duration="18546000" />
+      <workItem from="1763315368122" duration="8718000" />
+      <workItem from="1763375194484" duration="12704000" />
     </task>
     <servers />
   </component>

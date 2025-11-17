@@ -7,10 +7,12 @@
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/Actor.h"
 #include "DrawDebugHelpers.h"
+#include "UE5_cpp/interfaces/MyCombatInterface.h"
 
 // Sets default values
 AMyItem::AMyItem()
 {
+	
 	Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 	SetRootComponent(Mesh);
 
@@ -23,9 +25,10 @@ AMyItem::AMyItem()
 	// HitBox->SetCollisionResponseToAllChannels(ECR_Overlap);
 	
 	HitBox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	HitBox->SetCollisionObjectType(ECC_GameTraceChannel1);
+	HitBox->SetCollisionObjectType(ECC_GameTraceChannel2);
 	HitBox->SetCollisionResponseToAllChannels(ECR_Ignore);
 	HitBox->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
+	HitBox->SetCollisionResponseToChannel(ECC_Destructible, ECR_Overlap);
 
 	HitBox->SetGenerateOverlapEvents(true);
 	HitBox->OnComponentBeginOverlap.AddDynamic(this, &AMyItem::OnHitBoxOverlap);
@@ -112,7 +115,14 @@ void AMyItem::SetHitboxActive(bool bActive)
 void AMyItem::OnHitBoxOverlap(UPrimitiveComponent* OverlappedComp,AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	if (!bHitboxActive) return;
-	if (OtherActor == GetOwner()) return;
+	if (!OtherActor ||OtherActor == GetOwner()) return;
 
 	UE_LOG(LogTemp, Log, TEXT("Weapon hit: %s"), *GetNameSafe(OtherActor));
+	
+	if (OtherActor->GetClass()->ImplementsInterface(UMyCombatInterface::StaticClass()))
+	{
+		const FVector HitLocation = SweepResult.bBlockingHit ? FVector(SweepResult.ImpactPoint) : OtherActor->GetActorLocation();
+
+		IMyCombatInterface::Execute_GetHit(OtherActor, HitLocation, GetOwner(), Damage);
+	}
 }
