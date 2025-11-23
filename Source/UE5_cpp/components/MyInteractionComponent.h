@@ -1,5 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
 #pragma once
 
 #include "CoreMinimal.h"
@@ -28,7 +26,6 @@ public:
 	void TryInteract();
 	UFUNCTION(BlueprintCallable, Category = "Interaction")
 	void PickUp(AActor* Item);
-
 protected:
 	UPROPERTY(EditAnywhere, Category = "Interaction")
 	float TraceDistance = 150.f;

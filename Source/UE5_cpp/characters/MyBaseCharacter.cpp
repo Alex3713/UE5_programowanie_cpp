@@ -2,6 +2,8 @@
 
 
 #include "MyBaseCharacter.h"
+#include "Components/CapsuleComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 // Sets default values
 AMyBaseCharacter::AMyBaseCharacter()
@@ -16,7 +18,7 @@ AMyBaseCharacter::AMyBaseCharacter()
 void AMyBaseCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	SetPawnState(EPawnState::Idle);
 }
 
 // Called every frame
@@ -35,15 +37,97 @@ void AMyBaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
 
 void AMyBaseCharacter::GetHit_Implementation(FVector HitLocation, AActor* InstigatorActor, float DamageAmount)
 {
+	if (!Attributes||bIsDead) return;
 	if (Attributes)
 	{
 		Attributes->ApplyDamage(DamageAmount);
 	}
-	UE_LOG(LogTemp, Warning, TEXT("Character got hit at %s by %s"), *HitLocation.ToString(), *GetNameSafe(InstigatorActor));
+
+	UE_LOG(LogTemp, Warning, TEXT("%ls got hit at %s by %s"), *GetName(), *HitLocation.ToString(), *GetNameSafe(InstigatorActor));
 	UE_LOG(LogTemp, Warning, TEXT("Damage dealt: %f"), DamageAmount);
+
+	if (Attributes->GetHealth() > 0.f)
+	{
+		SetPawnState(EPawnState::Occupied);
+		
+		const FVector HitDirection = HitLocation - GetActorLocation();
+		PlayHitReactMontage(HitDirection);
+	}
 }
 
 void AMyBaseCharacter::OnDeath_Implementation()
 {
-	UE_LOG(LogTemp, Error, TEXT("%s: died (BaseCharacter OnDeath)"), *GetName());
+	if (bIsDead) return;
+	bIsDead = true;
+	
+	UE_LOG(LogTemp, Error, TEXT("%s died (BaseCharacter OnDeath)"), *GetName());
+
+	if (AController* PC = GetController())
+	{
+		PC->UnPossess();
+	}
+
+	if (UCharacterMovementComponent* MoveComp = GetCharacterMovement())
+	{
+		MoveComp->DisableMovement();
+	}
+	GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	if (DeathMontage)
+	{
+		if (UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance())
+		{
+			AnimInstance->Montage_Play(DeathMontage);
+		}
+	}
+}
+
+void AMyBaseCharacter::PlayHitReactMontage(const FVector& HitDirection)
+{
+	if (bIsDead || !HitReactMontage) return;
+
+	if (UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance())
+	{
+		AnimInstance->Montage_Play(HitReactMontage);
+
+		FOnMontageEnded EndDelegate;
+		EndDelegate.BindLambda([this](UAnimMontage* Montage, bool bInterrupted)
+		{
+			if (!bIsDead) SetPawnState(EPawnState::InCombat);
+		});
+		AnimInstance->Montage_SetEndDelegate(EndDelegate, HitReactMontage);
+	}
+	else
+	{
+		SetPawnState(EPawnState::InCombat);
+	}
+	
+	// if (!AnimInstance) return;
+	//
+	// const FVector Forward = GetActorForwardVector();
+	// const FVector Right = GetActorRightVector();
+	// const FVector Dir = HitDirection.GetSafeNormal2D();
+	//
+	// const float ForwardDot = FVector::DotProduct(Forward, Dir);
+	// const float RightDot = FVector::DotProduct(Right, Dir);
+	//
+	// FName SectionName = FName("HitFront");
+	//
+	// if (FMath::Abs(ForwardDot) > FMath::Abs(RightDot))
+	// {
+	// 	SectionName = (ForwardDot > 0.f) ? FName("HitFront") : FName("HitBack");
+	// }
+	// else
+	// {
+	// 	SectionName = (RightDot > 0.f) ? FName("HitRight") : FName("HitLeft");
+	// }
+
+	// AnimInstance->Montage_Play(HitReactMontage);
+	// AnimInstance->Montage_JumpToSection(SectionName, HitReactMontage);
+}
+
+void AMyBaseCharacter::SetPawnState(EPawnState NewState)
+{
+	if (PawnState == NewState) return;
+	PawnState = NewState;
+	UE_LOG(LogTemp, Log, TEXT("%s PawnState changed to %d"), *GetName(), (int32)PawnState);
 }

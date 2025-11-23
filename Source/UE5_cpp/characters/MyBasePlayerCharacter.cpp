@@ -4,6 +4,7 @@
 #include "MyBasePlayerCharacter.h"
 #include "UE5_cpp/components/MyInteractionComponent.h"
 #include "UE5_cpp/objects/MyItem.h"
+#include "UE5_cpp/enums/MyPawnState.h"
 #include "Animation/AnimInstance.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/PlayerController.h"
@@ -27,6 +28,7 @@ void AMyBasePlayerCharacter::StartPickup(AActor* TargetItem)
 
 	bIsInteracting = true;
 	PendingItem = TargetItem;
+	SetPawnState(EPawnState::Occupied);
 
 	if (UCharacterMovementComponent* Move = GetCharacterMovement())
 	{
@@ -52,6 +54,13 @@ void AMyBasePlayerCharacter::StartPickup(AActor* TargetItem)
 		DoPickup();
 		RestoreControl();
 		bIsInteracting = false;
+		if (EquippedWeapon)
+		{
+			SetPawnState(EPawnState::InCombat);
+		}else
+		{
+			SetPawnState(EPawnState::Idle);
+		}
 	}
 }
 
@@ -60,7 +69,15 @@ void AMyBasePlayerCharacter::OnPickupMontageEnded(UAnimMontage* Montage, bool bI
 	DoPickup();
 	RestoreControl();
 	bIsInteracting = false;
-
+	
+	if (EquippedWeapon)
+	{
+		SetPawnState(EPawnState::InCombat);
+	}else
+	{
+		SetPawnState(EPawnState::Idle);
+	}
+	
 	if (UAnimInstance* Anim = GetMesh() ? GetMesh()->GetAnimInstance() : nullptr)
 	{
 		Anim->OnPlayMontageNotifyBegin.RemoveAll(this);
@@ -112,6 +129,7 @@ void AMyBasePlayerCharacter::EquipWeapon(AMyItem* Weapon)
 	Weapon->SetOwner(this);
 	Weapon->SetEquipped(true);
 	EquippedWeapon = Weapon;
+	SetPawnState(EPawnState::InCombat);
 
 	UE_LOG(LogTemp, Log, TEXT("Equipped weapon: %s"), *GetNameSafe(Weapon));
 }
@@ -121,6 +139,7 @@ void AMyBasePlayerCharacter::UnequipWeapon()
 	if (!EquippedWeapon) return;
 
 	EquippedWeapon->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
+	SetPawnState(EPawnState::Idle);
 	if (UPrimitiveComponent* Prim = Cast<UPrimitiveComponent>(EquippedWeapon->GetRootComponent()))
 	{
 		EquippedWeapon->SetEquipped(false);
@@ -147,6 +166,7 @@ void AMyBasePlayerCharacter::SetInputDisabled(bool bDisable)
 
 void AMyBasePlayerCharacter::TryAttack()
 {
+	if (IsOccupied() || bIsDead) return;
 	if (bInputDisabled) return;
 	if (!EquippedWeapon) return;
 	if (bAttackLockedByMontage && bIsAttacking) return;
