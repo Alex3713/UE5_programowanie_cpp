@@ -55,8 +55,13 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Equipment")
 	void UnequipWeapon();
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
+	bool bJumpHeld = false;
+	
 protected:
 	virtual void BeginPlay() override;
+	virtual void Jump() override;
+	virtual void Landed(const FHitResult& Hit) override;
 	
 	UFUNCTION()
 	void OnPickupMontageEnded(UAnimMontage* Montage, bool bInterrupted);

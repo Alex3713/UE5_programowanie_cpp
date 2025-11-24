@@ -1,8 +1,14 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "MyPlayerController.h"
+#include "UE5_cpp/UI/MyMainHUD.h"
+#include "UE5_cpp/UI/widgets/MainHUDWidget.h"
 #include "components/MyInteractionComponent.h"
+
+void AMyPlayerController::BeginPlay()
+{
+	Super::BeginPlay();
+
+	InitHUDWidget();
+}
 
 void AMyPlayerController::TryInteract()
 {
@@ -21,4 +27,19 @@ void AMyPlayerController::TryInteract()
 	}
 
 	Interaction->TryInteract();
+}
+
+void AMyPlayerController::InitHUDWidget()
+{
+	if (!MainHUDWidgetClass) return;
+
+	MainHUDWidget = CreateWidget<UMainHUDWidget>(this, MainHUDWidgetClass);
+	if (!MainHUDWidget) return;
+
+	MainHUDWidget->AddToViewport();
+
+	if (AMyMainHUD* HUD = Cast<AMyMainHUD>(GetHUD()))
+	{
+		HUD->SetHUDWidget(MainHUDWidget);
+	}
 }

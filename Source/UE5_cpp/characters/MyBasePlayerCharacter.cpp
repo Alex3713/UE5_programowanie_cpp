@@ -171,7 +171,15 @@ void AMyBasePlayerCharacter::TryAttack()
 	if (!EquippedWeapon) return;
 	if (bAttackLockedByMontage && bIsAttacking) return;
 	if (AttackMontages.Num() == 0) return;
+	
+	if (!Attributes) return;
 
+	const FStaminaCost Cost = Attributes->GetStaminaCost();
+	if (!Attributes->CanPayStaminaCost(Cost.StaminaCost_Attack))
+	{
+		return;
+	}
+	
 	UAnimInstance* Anim = GetMesh() ? GetMesh()->GetAnimInstance() : nullptr;
 	if (!Anim) return;
 
@@ -204,6 +212,8 @@ void AMyBasePlayerCharacter::TryAttack()
 		return;
 	}
 
+	Attributes->PayStamina(Cost.StaminaCost_Attack);
+	
 	FOnMontageEnded EndDelegate;
 	EndDelegate.BindUObject(this, &AMyBasePlayerCharacter::OnAttackMontageEnded);
 	Anim->Montage_SetEndDelegate(EndDelegate, Chosen);
@@ -222,4 +232,29 @@ void AMyBasePlayerCharacter::SetWeaponHitboxActive(bool bActive)
 {
 	if (!EquippedWeapon) return;
 	EquippedWeapon->SetHitboxActive(bActive);
+}
+
+void AMyBasePlayerCharacter::Jump()
+{
+	UCharacterMovementComponent* MoveComp = GetCharacterMovement();
+	if (!MoveComp || MoveComp->IsFalling()) return;
+	if (!Attributes) return;
+
+	const FStaminaCost Cost = Attributes->GetStaminaCost();
+	if (!Attributes->CanPayStaminaCost(Cost.StaminaCost_Jump))
+	{
+		SetPawnState(EPawnState::OutOfStamina);
+		return;
+	}
+	
+	Attributes->PayStamina(Cost.StaminaCost_Jump);
+	
+	Super::Jump();
+}
+
+void AMyBasePlayerCharacter::Landed(const FHitResult& Hit)
+{
+	Super::Landed(Hit);
+
+	if (bJumpHeld) Jump();
 }
