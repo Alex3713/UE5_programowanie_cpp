@@ -10,6 +10,8 @@
 #include "Animation/AnimMontage.h"
 #include "MyBaseCharacter.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnPawnStateChanged, EPawnState, NewState);
+
 UCLASS()
 class UE5_CPP_API AMyBaseCharacter : public ACharacter, public IMyCombatInterface
 {
@@ -28,6 +30,8 @@ protected:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "State")
 	EPawnState PawnState = EPawnState::Idle;
+	UPROPERTY(BlueprintReadOnly, Category="State")
+	EPawnState PreviousPawnState = EPawnState::Idle;
 
 	virtual void SetPawnState(EPawnState NewState);
 	
@@ -48,6 +52,12 @@ public:
 	{
 		return PawnState == EPawnState::Occupied;
 	}
+	
+	UFUNCTION()
+	EPawnState GetPawnState() const { return PawnState; }
+	
+	UPROPERTY(BlueprintAssignable, Category = "State")
+	FOnPawnStateChanged OnPawnStateChanged;
 	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

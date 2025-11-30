@@ -8,9 +8,6 @@
 #include "UE5_cpp/objects/MyItem.h"
 #include "MyBasePlayerCharacter.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class UE5_CPP_API AMyBasePlayerCharacter : public AMyBaseCharacter
 {
@@ -57,11 +54,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
 	bool bJumpHeld = false;
-	
+
+	virtual void Tick(float DeltaTime) override;
+	virtual void Landed(const FHitResult& Hit) override;
+	virtual void Jump() override;
 protected:
 	virtual void BeginPlay() override;
-	virtual void Jump() override;
-	virtual void Landed(const FHitResult& Hit) override;
 	
 	UFUNCTION()
 	void OnPickupMontageEnded(UAnimMontage* Montage, bool bInterrupted);

@@ -9,7 +9,6 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/PlayerController.h"
 #include "Components/SkeletalMeshComponent.h"
-#include "Components/StaticMeshComponent.h"
 
 AMyBasePlayerCharacter::AMyBasePlayerCharacter()
 {
@@ -20,6 +19,26 @@ void AMyBasePlayerCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	InteractionComp = FindComponentByClass<UMyInteractionComponent>();
+}
+
+void AMyBasePlayerCharacter::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
+
+	if (!Attributes) return;
+
+	const FStaminaCost Cost = Attributes->GetStaminaCost();
+
+	const bool bCanDoMainAction = Attributes->CanPayStaminaCost(Cost.StaminaCost_Attack);
+	
+	if (PawnState != EPawnState::OutOfStamina && !bCanDoMainAction)
+	{
+		SetPawnState(EPawnState::OutOfStamina);
+	}
+	else if (PawnState == EPawnState::OutOfStamina && bCanDoMainAction)
+	{
+		SetPawnState(PreviousPawnState);
+	}
 }
 
 void AMyBasePlayerCharacter::StartPickup(AActor* TargetItem)
@@ -166,7 +185,7 @@ void AMyBasePlayerCharacter::SetInputDisabled(bool bDisable)
 
 void AMyBasePlayerCharacter::TryAttack()
 {
-	if (IsOccupied() || bIsDead) return;
+	if (IsOccupied() || bIsDead || PawnState == EPawnState::Dead) return;
 	if (bInputDisabled) return;
 	if (!EquippedWeapon) return;
 	if (bAttackLockedByMontage && bIsAttacking) return;
@@ -243,7 +262,6 @@ void AMyBasePlayerCharacter::Jump()
 	const FStaminaCost Cost = Attributes->GetStaminaCost();
 	if (!Attributes->CanPayStaminaCost(Cost.StaminaCost_Jump))
 	{
-		SetPawnState(EPawnState::OutOfStamina);
 		return;
 	}
 	

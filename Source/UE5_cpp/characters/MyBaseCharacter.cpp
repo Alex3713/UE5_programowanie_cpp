@@ -56,8 +56,9 @@ void AMyBaseCharacter::GetHit_Implementation(FVector HitLocation, AActor* Instig
 
 void AMyBaseCharacter::OnDeath_Implementation()
 {
-	if (bIsDead) return;
+	if (bIsDead || PawnState == EPawnState::Dead) return;
 	bIsDead = true;
+	SetPawnState(EPawnState::Dead);
 	
 	UE_LOG(LogTemp, Error, TEXT("%s died (BaseCharacter OnDeath)"), *GetName());
 
@@ -82,7 +83,7 @@ void AMyBaseCharacter::OnDeath_Implementation()
 
 void AMyBaseCharacter::PlayHitReactMontage(const FVector& HitDirection)
 {
-	if (bIsDead || !HitReactMontage) return;
+	if (bIsDead || PawnState == EPawnState::Dead || !HitReactMontage) return;
 
 	if (UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance())
 	{
@@ -127,6 +128,11 @@ void AMyBaseCharacter::PlayHitReactMontage(const FVector& HitDirection)
 void AMyBaseCharacter::SetPawnState(EPawnState NewState)
 {
 	if (PawnState == NewState) return;
+	if (NewState != EPawnState::OutOfStamina || NewState != EPawnState::Dead)
+	{
+		PreviousPawnState = PawnState;
+	}
 	PawnState = NewState;
+	OnPawnStateChanged.Broadcast(PawnState);
 	UE_LOG(LogTemp, Log, TEXT("%s PawnState changed to %d"), *GetName(), (int32)PawnState);
 }

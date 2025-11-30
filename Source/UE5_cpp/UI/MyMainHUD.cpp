@@ -2,6 +2,7 @@
 #include "widgets/MainHUDWidget.h"
 #include "UE5_cpp/components/MyAttributesComponent.h"
 #include "GameFramework/PlayerController.h"
+#include "UE5_cpp/characters/MyBasePlayerCharacter.h"
 
 void AMyMainHUD::BeginPlay()
 {
@@ -17,9 +18,16 @@ void AMyMainHUD::BeginPlay()
 
 	Attributes->OnHealthChanged.AddDynamic(this, &AMyMainHUD::UpdateHealth);
 	Attributes->OnStaminaChanged.AddDynamic(this, &AMyMainHUD::UpdateStamina);
+	
 
 	UpdateHealth(Attributes->GetHealth(), Attributes->GetMaxHealth());
 	UpdateStamina(Attributes->GetStamina(), Attributes->GetMaxStamina());
+	
+	if (AMyBasePlayerCharacter* Char = Cast<AMyBasePlayerCharacter>(PlayerPawn))
+	{
+		Char->OnPawnStateChanged.AddDynamic(this, &AMyMainHUD::UpdatePawnState);
+		UpdatePawnState(Char->GetPawnState());
+	}
 }
 
 void AMyMainHUD::SetHUDWidget(UMainHUDWidget* InWidget)
@@ -40,5 +48,13 @@ void AMyMainHUD::UpdateStamina(float Current, float Max)
 	if (HUDWidget)
 	{
 		HUDWidget->UpdateStamina(Current, Max);
+	}
+}
+
+void AMyMainHUD::UpdatePawnState(EPawnState NewState)
+{
+	if (HUDWidget)
+	{
+		HUDWidget->UpdatePawnState(NewState);
 	}
 }

@@ -15,7 +15,7 @@ void AMyBaseEnemyCharacter::Tick(float DeltaSeconds)
 
 bool AMyBaseEnemyCharacter::CanSeePlayer() const
 {
-	if (bIsDead) return false;
+	if (bIsDead || PawnState == EPawnState::Dead) return false;
 
 	UWorld* World = GetWorld();
 	if (!World) return false;
@@ -41,7 +41,7 @@ bool AMyBaseEnemyCharacter::CanSeePlayer() const
 
 void AMyBaseEnemyCharacter::TryAttackPlayer()
 {
-	if (IsOccupied() || bIsDead) return;
+	if (IsOccupied() || bIsDead || PawnState == EPawnState::Dead) return;
 
 	const float Time = GetWorld()->GetTimeSeconds();
 	if (Time - LastAttackTime < AttackCD) return;

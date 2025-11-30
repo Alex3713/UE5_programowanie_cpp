@@ -4,6 +4,8 @@
 #include "Blueprint/UserWidget.h"
 #include "MainHUDWidget.generated.h"
 
+enum class EPawnState : uint8;
+
 UCLASS()
 class UE5_CPP_API UMainHUDWidget : public UUserWidget
 {
@@ -14,4 +16,6 @@ public:
 	void UpdateHealth(float Current, float Max);
 	UFUNCTION(BlueprintImplementableEvent, Category = "HUD")
 	void UpdateStamina(float Current, float Max);
+	UFUNCTION(BlueprintImplementableEvent, Category = "HUD")
+	void UpdatePawnState(EPawnState Current);
 };
