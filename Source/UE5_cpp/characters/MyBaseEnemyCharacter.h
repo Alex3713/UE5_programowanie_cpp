@@ -6,9 +6,8 @@
 #include "MyBaseCharacter.h"
 #include "MyBaseEnemyCharacter.generated.h"
 
-/**
- * 
- */
+class AMyItem;
+
 UCLASS()
 class UE5_CPP_API AMyBaseEnemyCharacter : public AMyBaseCharacter
 {
@@ -19,6 +18,11 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 protected:
+	virtual void BeginPlay() override;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat|Weapon")
+	AMyItem* DefaultWeapon;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat|Enemy")
 	UAnimMontage* AttackMontage;
 
@@ -26,7 +30,7 @@ protected:
 	float AttackRange = 300.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Combat|Enemy")
-	float AttackCD = 1.f;
+	float AttackCD = 2.f;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Combat|Enemy")
 	bool bIsAttacking = false;
@@ -34,10 +38,15 @@ protected:
 	float LastAttackTime = -100.f;
 
 	void TryAttackPlayer();
+	void EquipDefaultWeapon();
 	bool CanSeePlayer() const;
 
 	UFUNCTION()
 	void OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted);
 	
 	virtual void GetHit_Implementation(FVector HitLocation, AActor* InstigatorActor, float DamageAmount) override;
+
+public:
+	UFUNCTION(BlueprintCallable, Category = "Combat")
+	void SetEnemyWeaponHitboxActive(bool bActive);
 };

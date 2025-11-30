@@ -66,8 +66,7 @@ void UMyAttributesComponent::SetMaxHealth(float NewMaxHealth, bool bResetHealth)
 void UMyAttributesComponent::ApplyDamage(float DamageAmount)
 {
 	if (DamageAmount <= 0.f || Health <= 0.f) return;
-
-	Health = FMath::Clamp(Health - DamageAmount, 0.f, MaxHealth);
+	SetHealth(Health - DamageAmount);
 	if (Health <= 0.f)
 	{
 		HandleDeath();

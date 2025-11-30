@@ -1,6 +1,7 @@
 #include "AnimNotifyState_WeaponHitWindow.h"
 #include "UE5_cpp/characters/MyBasePlayerCharacter.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "UE5_cpp/characters/MyBaseEnemyCharacter.h"
 
 void UAnimNotifyState_WeaponHitWindow::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float TotalDuration, const FAnimNotifyEventReference& EventReference)
 {
@@ -12,6 +13,10 @@ void UAnimNotifyState_WeaponHitWindow::NotifyBegin(USkeletalMeshComponent* MeshC
 	{
 		Char->SetWeaponHitboxActive(true);
 	}
+	if (AMyBaseEnemyCharacter* EnemyChar = Cast<AMyBaseEnemyCharacter>(Owner))
+	{
+		EnemyChar->SetEnemyWeaponHitboxActive(true);
+	}
 }
 
 void UAnimNotifyState_WeaponHitWindow::NotifyEnd(USkeletalMeshComponent* MesComp, UAnimSequenceBase* Animation, const FAnimNotifyEventReference& EventReference)
@@ -22,5 +27,9 @@ void UAnimNotifyState_WeaponHitWindow::NotifyEnd(USkeletalMeshComponent* MesComp
 	if (AMyBasePlayerCharacter* Char = Cast<AMyBasePlayerCharacter>(Owner))
 	{
 		Char->SetWeaponHitboxActive(false);
+	}
+	if (AMyBaseEnemyCharacter* EnemyChar = Cast<AMyBaseEnemyCharacter>(Owner))
+	{
+		EnemyChar->SetEnemyWeaponHitboxActive(false);
 	}
 }

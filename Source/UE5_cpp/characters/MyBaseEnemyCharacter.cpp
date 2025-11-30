@@ -1,5 +1,6 @@
 #include "MyBaseEnemyCharacter.h"
 #include "Components/CapsuleComponent.h"
+#include "UE5_cpp/objects/MyItem.h"
 
 AMyBaseEnemyCharacter::AMyBaseEnemyCharacter()
 {
@@ -11,6 +12,12 @@ void AMyBaseEnemyCharacter::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 
 	TryAttackPlayer();
+}
+
+void AMyBaseEnemyCharacter::BeginPlay()
+{
+	Super::BeginPlay();
+	EquipDefaultWeapon();
 }
 
 bool AMyBaseEnemyCharacter::CanSeePlayer() const
@@ -67,6 +74,25 @@ void AMyBaseEnemyCharacter::TryAttackPlayer()
 	Anim->Montage_SetEndDelegate(EndDelegate, AttackMontage);
 }
 
+void AMyBaseEnemyCharacter::EquipDefaultWeapon()
+{
+	AMyItem* Weapon = DefaultWeapon;
+	if (!Weapon) return;
+	if (Weapon->GetItemType() == EItemType::Weapon)
+	{
+		if (UPrimitiveComponent* Prim = Cast<UPrimitiveComponent>(Weapon->GetRootComponent()))
+		{
+			Prim->SetSimulatePhysics(false);
+		}
+		static const FName WeaponSocket(TEXT("RightHandSocket"));
+		if (USkeletalMeshComponent* Body = GetMesh())
+		{
+			Weapon->AttachToComponent(Body, FAttachmentTransformRules::SnapToTargetNotIncludingScale, WeaponSocket);
+		}
+		Weapon->SetOwner(this);
+	}
+}
+
 void AMyBaseEnemyCharacter::OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted)
 {
 	bIsAttacking = false;
@@ -87,4 +113,10 @@ void AMyBaseEnemyCharacter::GetHit_Implementation(FVector HitLocation, AActor* I
 	SetPawnState(EPawnState::Occupied);
 
 	Super::GetHit_Implementation(HitLocation, InstigatorActor, DamageAmount);
+}
+
+void AMyBaseEnemyCharacter::SetEnemyWeaponHitboxActive(bool bActive)
+{
+	if (!DefaultWeapon) return;
+	DefaultWeapon->SetHitboxActive(bActive);
 }

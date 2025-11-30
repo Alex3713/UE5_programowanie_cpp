@@ -13,8 +13,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eaa38d13-9db5-410a-bae7-6845ebcb96ef" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/4/5W/KJTA40HZ3TKI499OD6WFXT.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UE5_cpp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UE5_cpp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBasePlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBasePlayerCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/ABP_MyPlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/ABP_MyPlayerCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/MyEnemyCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/MyEnemyCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/1/0Y/YRVKZ9VJ5LTSCZ4UG4S4MZ.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/1/0Y/YRVKZ9VJ5LTSCZ4UG4S4MZ.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBaseEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBaseEnemyCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBaseEnemyCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBaseEnemyCharacter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/components/MyAttributesComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/components/MyAttributesComponent.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/notifies/AnimNotifyState_WeaponHitWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/notifies/AnimNotifyState_WeaponHitWindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,6 +227,7 @@
       <workItem from="1764345968347" duration="16516000" />
       <workItem from="1764465315057" duration="12726000" />
       <workItem from="1764484294410" duration="671000" />
+      <workItem from="1764522563235" duration="10626000" />
     </task>
     <servers />
   </component>
