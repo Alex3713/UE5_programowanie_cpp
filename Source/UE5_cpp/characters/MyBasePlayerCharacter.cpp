@@ -39,6 +39,21 @@ void AMyBasePlayerCharacter::Tick(float DeltaTime)
 	{
 		SetPawnState(PreviousPawnState);
 	}
+
+	// Kangaroo jump mode xd
+	if (bJumpHeld)
+	{
+		if (UCharacterMovementComponent* Move = GetCharacterMovement())
+		{
+			if (!Move->IsFalling())
+			{
+				if (Attributes->CanPayStaminaCost(Cost.StaminaCost_Jump))
+				{
+					Jump();
+				}
+			}
+		}
+	}
 }
 
 void AMyBasePlayerCharacter::StartPickup(AActor* TargetItem)
@@ -273,6 +288,4 @@ void AMyBasePlayerCharacter::Jump()
 void AMyBasePlayerCharacter::Landed(const FHitResult& Hit)
 {
 	Super::Landed(Hit);
-
-	if (bJumpHeld) Jump();
 }
