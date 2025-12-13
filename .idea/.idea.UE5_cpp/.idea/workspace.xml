@@ -13,17 +13,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eaa38d13-9db5-410a-bae7-6845ebcb96ef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/4/5W/KJTA40HZ3TKI499OD6WFXT.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/enemy/BTT_ClearLastKnownLocation.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/enemy/EQS_PatrolPoint.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/enemy/EnemyBB.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/enemy/EnemyBT.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/enemy/MyEnemyAIController.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/6/FO/Z58MP6QP1LSZYT65KELMCO.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/A/9W/CM611HY1Z9PWGJS0N377IQ.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/UE5_cpp/MyEnemyAIController.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/UE5_cpp/MyEnemyAIController.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.UE5_cpp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UE5_cpp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/ABP_MyPlayerCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/ABP_MyPlayerCharacter.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/ABP_MyEnemyCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/ABP_MyEnemyCharacter.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/characters/MyEnemyCharacter.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/characters/MyEnemyCharacter.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/1/0Y/YRVKZ9VJ5LTSCZ4UG4S4MZ.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/__ExternalActors__/ThirdPerson/Maps/ThirdPersonMap/1/0Y/YRVKZ9VJ5LTSCZ4UG4S4MZ.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBaseEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBaseEnemyCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBaseEnemyCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/characters/MyBaseEnemyCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/components/MyAttributesComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/components/MyAttributesComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/notifies/AnimNotifyState_WeaponHitWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/notifies/AnimNotifyState_WeaponHitWindow.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UE5_cpp.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/UE5_cpp.uproject" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +44,8 @@
     <setting file="file://$PROJECT_DIR$/../../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Engine/Classes/Animation/AnimInstance.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Engine/Classes/GameFramework/PlayerController.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../../Program Files/Epic Games/UE_5.5/Engine/Source/Runtime/Engine/Private/PlayerController.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/MyEnemyAIController.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/MyEnemyAIController.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/UI/MyMainHUD.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/UI/MyMainHUD.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/characters/MyBaseCharacter.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -60,11 +65,10 @@
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/objects/MyItem.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/structs/StaminaCost.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/UE5_cpp/widgets/MainHUDWidget.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="Toolset" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -228,6 +232,8 @@
       <workItem from="1764465315057" duration="12726000" />
       <workItem from="1764484294410" duration="671000" />
       <workItem from="1764522563235" duration="10626000" />
+      <workItem from="1765571828587" duration="1202000" />
+      <workItem from="1765649314164" duration="9023000" />
     </task>
     <servers />
   </component>
